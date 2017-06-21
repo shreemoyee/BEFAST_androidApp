@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#000000"
+    tools:context="com.example.shreemoyee.iq1.MainActivity">
+
+
+    <Button
+        android:text="B"
+        android:background="@drawable/my_button_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/b"
+        android:layout_alignParentLeft="true"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/c" />
+
+    <Button
+        android:text="A"
+        android:background="@drawable/my_button_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/floora"
+        android:clickable="true"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/b"
+        android:layout_alignRight="@+id/b"
+        android:layout_alignEnd="@+id/b" />
+
+
+    <Button
+        android:text="J"
+        android:background="@drawable/my_button_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/j"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginLeft="119dp"
+        android:layout_marginStart="119dp"
+        android:layout_alignParentTop="true" />
+
+    <Button
+        android:text="K"
+        android:background="@drawable/my_button_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/k"
+        android:textColor="@color/colorPrimary"
+        android:layout_toRightOf="@+id/j"
+        android:layout_toEndOf="@+id/j" />
+
+    <Button
+        android:text="G"
+        android:background="@drawable/my_button_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/g"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignBottom="@+id/b"
+        android:layout_alignLeft="@+id/j"
+        android:layout_alignStart="@+id/j" />
+
+    <Button
+        android:text="C"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/c"
+        android:background="@drawable/my_button_bg"
+        android:textColor="@color/colorPrimary"
+        android:layout_marginBottom="165dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="H"
+        android:background="@drawable/my_button_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/h"
+        android:layout_alignBaseline="@+id/c"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignBottom="@+id/c"
+        android:layout_alignLeft="@+id/g"
+        android:layout_alignStart="@+id/g" />
+
+    <!--android:layout_toStartOf="@+id/e" -->
+
+
+    <Button
+        android:text="F"
+        android:background="@drawable/my_button_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/f"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+
+        android:layout_alignTop="@+id/e" />
+    <!-- android:layout_toEndOf="@+id/h"-->
+
+    <Button
+        android:text="I"
+        android:background="@drawable/my_button_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/i1"
+        android:textColor="@color/colorPrimary"
+        android:layout_toRightOf="@+id/h"
+        android:layout_toEndOf="@+id/g"
+        android:layout_alignTop="@+id/g"
+        android:paddingBottom="0dp" />
+    <Button
+        android:text="I"
+        android:textColor="@color/colorPrimary"
+        android:background="@drawable/my_button_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/h"
+        android:layout_toRightOf="@+id/g"
+        android:layout_toEndOf="@+id/g"
+        android:paddingTop="0dp"
+        android:id="@+id/i2" />
+
+    <Button
+        android:text="E"
+        android:background="@drawable/my_button_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/e"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/f"
+        android:layout_toStartOf="@+id/f" />
+
+    <Button
+        android:text="D"
+        android:background="@drawable/my_button_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/d"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignParentBottom="true"
+        android:layout_toStartOf="@+id/e"
+        android:layout_toLeftOf="@+id/e" />
+    <!--
+        <Button
+            android:text="I AM STUCK"
+            android:textColor="#000000"
+            android:background="@drawable/my_button_bg2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button2"
+            android:layout_below="@+id/h"
+            android:layout_marginTop="31dp"
+            android:layout_alignRight="@+id/i2"
+            android:layout_alignEnd="@+id/i2"
+            android:layout_alignLeft="@+id/h"
+            android:layout_alignStart="@+id/h" />
+    -->
+
+        <!--android:layout_toEndOf="@+id/g"-->
+</RelativeLayout>
