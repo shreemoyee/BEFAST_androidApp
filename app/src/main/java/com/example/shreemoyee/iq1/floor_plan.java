@@ -6,6 +6,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
+import android.graphics.RadialGradient;
+import android.graphics.Shader;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,11 +36,14 @@ public class floor_plan extends AppCompatActivity {
     public int uy;
     public int uyh;
     public int uxh;
-    public Button bot;
+
 
 
     public ArrayList<Integer> path_array = new ArrayList<Integer>();
-    public Pair<Integer, Integer> a120 = new Pair<Integer, Integer>(0, 0);
+    public  ArrayList<Integer> fire_node=new ArrayList<Integer>();
+
+
+  //  public Pair<Integer, Integer> a120 = new Pair<Integer, Integer>(0, 0);
 
 
     @Override
@@ -46,16 +51,7 @@ public class floor_plan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_floor_plan);
        // Context context = getApplicationContext();
-        bot=(Button)findViewById(R.id.button);
-        bot.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-                Context context=getApplicationContext();
-                Toast.makeText(context, "The Button works!! YAY", Toast.LENGTH_LONG).show();
-                Log.d("Blah","The button works");
 
-
-            }
-        });
         Display mdisp = getWindowManager().getDefaultDisplay();
         Point mdispSize = new Point();
         mdisp.getSize(mdispSize);
@@ -75,6 +71,7 @@ public class floor_plan extends AppCompatActivity {
 
         Intent i = getIntent();
         path_array = i.getIntegerArrayListExtra("path");
+        fire_node=i.getIntegerArrayListExtra("fire");
         //size=size-1;
         //while(size>=0){
         //    int j=i.getIntExtra("size",0);
@@ -240,8 +237,8 @@ public class floor_plan extends AppCompatActivity {
             while (path_array.size()>1) {
                 int first = path_array.get(0);
                 int second = path_array.get(1);
-              Log.d("size1", String.valueOf(first));
-                Log.d("size2", String.valueOf(second));
+              Log.d("node", String.valueOf(first));
+                Log.d("node2", String.valueOf(second));
               /*    path_array.remove(0);  */
 
 
@@ -435,13 +432,18 @@ public class floor_plan extends AppCompatActivity {
                     p3=x0+2*ux+uxh;
                     p4=y0+7*uy+uyh;
                 }
+                else if(second==12){
+                    p3=x0+ux;
+                    p4=y0+2*uy+uyh;
+                }
+
 
 
 
 
                 if(first==1){
-                    paint.setColor(Color.RED);
-                    paint.setStrokeWidth(10);
+                    paint.setColor(Color.parseColor("#007AC3"));
+                    paint.setStrokeWidth(20);
                     canvas.drawLine(x0+ux, y1-2*uy, x0+ux, y1, paint);
                     break;
                 }
@@ -449,22 +451,24 @@ public class floor_plan extends AppCompatActivity {
                 if(first==7){
                     p1=x0 + 7 * ux+uxh;
                     p2=y0 + 2 * uy+uyh;
-                    paint.setColor(Color.RED);
-                    paint.setStrokeWidth(10);
+                    paint.setColor(Color.parseColor("#007AC3"));
+                    paint.setStrokeWidth(20);
                     canvas.drawLine(p1, p2, x0+7*ux+uxh, y0, paint);
                     break;
                 }
                 if(first==12){
                     p1=x0 + ux;
-                    p2=y0 + 3 * uy;
-                    paint.setColor(Color.RED);
-                    paint.setStrokeWidth(10);
+                    p2=y0 + 2 * uy+uyh;
+                    paint.setColor(Color.parseColor("#007AC3"));
+                    paint.setStrokeWidth(20);
                     canvas.drawLine(p1, p2, x0, y0+uyh, paint);
+                    Context context = getApplicationContext();
+                    Toast.makeText(context, "USE THE EMERGENCY WINDOW IN CUBICLE A ", Toast.LENGTH_LONG).show();
                     break;
                 }
 
-                paint.setColor(Color.RED);
-                paint.setStrokeWidth(10);
+                paint.setColor(Color.parseColor("#007AC3"));
+                paint.setStrokeWidth(20);
                 canvas.drawLine(p1, p2, p3, p4, paint);
 
                 path_array.remove(0);
@@ -488,7 +492,122 @@ public class floor_plan extends AppCompatActivity {
             //canvas.drawText("Graphics Rotation", 40, 180, paint); */
 
 
-                //undo the rotate
+
+            while(fire_node.size()>0){
+               int first=fire_node.get(0);
+                int p1=0,p2=0;
+                if(first==120){
+                    p1=x0+2*ux;
+                    p2=y0+2*uy+uyh;
+                }
+                else if(first==30){
+                    p1=x0+2*ux;
+                    p2=y0+5*uy;
+                }
+                else if(first==201){
+                    p1=x0+2*ux;
+                    p2=y0+7*uy;
+                }
+                else if(first==202){
+                    p1=x0+3*ux;
+                    p2=y0+7*uy;
+                }
+                else if(first==4){
+                    p1=x0+2*ux+uxh;
+                    p2=y0+2*uy+uyh;
+                }
+                else if(first==3){
+                    p1=x0+2*ux+uxh;
+                    p2=y0+5*uy;
+                }
+                else if(first==2){
+                    p1=x0+2*ux+uxh;
+                    p2=y0+7*uy;
+                }
+
+                else if(first==5){
+                    p1=x0 + 3 * ux;
+                    p2=y0 + 2 * uy+uyh;
+                }
+                else if(first==6){
+                    p1=x0 + 5 * ux;
+                    p2=y0 + 2 * uy+uyh;
+                }
+                else if(first==501){
+                    p1=x0 + 3 * ux;
+                    p2=y0 + 2 * uy;
+                }
+                else if(first==502){
+                    p1=x0 + 3 * ux;
+                    p2=y0 + 3 * uy;
+                }
+                else if(first==60){
+                    p1=x0 + 5 * ux;
+                    p2=y0 + 2 * uy;
+                }
+                else if(first==1101){
+                    p1=x1 - 6 * ux;
+                    p2=y1 - 2 * uy;
+                }
+                else if(first==1102){
+                    p1=x1 - 4 * ux;
+                    p2=y1 - 2 * uy;
+                }
+                else if(first==100){
+                    p1=x1 - 2 * ux;
+                    p2=y1 - 2 * uy;
+                }
+                else if(first==10){
+                    p1=x1 - uxh;
+                    p2=y1 - 3 * uy;
+                }
+                else if(first==101){
+                    p1=x1 - ux;
+                    p2=y1 - 3 * uy;
+                }
+                else if(first==8){
+                    p1=x1 - uxh;
+                    p2=y1 - 7 * uy;
+                }
+                else if(first==801){
+                    p1=x1 - ux;
+                    p2=y1 - 7 * uy;
+                }
+                else if(first==11){
+                    p1=x0+2*ux+uxh;
+                    p2=y0+7*uy+uyh;
+                }
+
+                else if(first==9){
+                    p1=x1-ux-uxh;
+                    p2=y1-5*uy;
+                }
+               // paint.setShader(new RadialGradient( p1,
+               //         p2,
+               //         2,
+               //         "#ff0000",
+               //         "#000000",
+               //         Shader.TileMode.CLAMP
+                // ));
+                float[] stopsGradient;
+                int[] colorsGradient;
+
+                float rgRadius;
+                stopsGradient = new float[] { 0, 0.5f,1}; // the 3 points correspond to the 3 colors
+                colorsGradient  = new int[] { Color.YELLOW, Color.RED,Color.BLACK};
+               // paint.setColor(Color.YELLOW);
+
+                RadialGradient radialGradient = new RadialGradient(p1,p2,50,colorsGradient, stopsGradient ,Shader.TileMode.CLAMP);
+                paint.setShader(radialGradient);
+                canvas.drawCircle(p1,p2,50,paint);
+
+                fire_node.remove(0);
+
+
+            }
+
+
+
                 canvas.save();
 
                 canvas.restore();

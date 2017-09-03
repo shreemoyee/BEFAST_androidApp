@@ -9,11 +9,17 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.text.InputFilter;
+import android.text.Spanned;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import com.example.shreemoyee.iq1.R;
 import android.widget.Button;
 //import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 import android.view.MotionEvent;
 import android.view.View.OnClickListener;
@@ -46,6 +52,7 @@ import java.util.Set;
 
 //import java.util.List;
 
+
 public class MainActivity extends AppCompatActivity {
 
 
@@ -59,10 +66,15 @@ public class MainActivity extends AppCompatActivity {
     public Button buth;
     public Button buti1;
     public Button buti2;
+    public EditText num;
+    public Button stuck;
+
+    public boolean flag=false;
 
     public Button butj;
     public Button butk;
     public ArrayList<Integer> path_array = new ArrayList<Integer>();
+    public ArrayList<Integer> fire_node=new ArrayList<Integer>();
 
     public String ans;
     public double g[][] = new double[][]{{0,	1,	0,	0,	0,	0,	0,	2,	0,	0,	0,	0,	30},
@@ -100,6 +112,25 @@ public class MainActivity extends AppCompatActivity {
         buti2=(Button)findViewById(R.id.i2);
         butj=(Button)findViewById(R.id.j);
         butk=(Button)findViewById(R.id.k);
+
+        stuck=(Button)findViewById(R.id.button);
+        num=(EditText)findViewById(R.id.editText);
+        num.setFilters(new InputFilter[]{ new filter("1", "12")});
+
+        fire_node.add(6);
+        fire_node.add(5);
+        fire_node.add(2);
+        //fire_node.add(1);
+
+
+        for(int i=0;i<fire_node.size();i++){
+            ShortestPath t=new ShortestPath();
+            g=t.remove_fire_node(g,fire_node.get(i));
+
+        }
+
+
+
         buta.setOnClickListener(new OnClickListener() {
             public void onClick(View arg0) {
 
@@ -107,13 +138,19 @@ public class MainActivity extends AppCompatActivity {
                 ShortestPath t = new ShortestPath();
                 t.dijkstra(g, 0);
                 Context context = getApplicationContext();
-                Toast.makeText(context, "Path: " + ans, Toast.LENGTH_LONG).show();
-                path_array.add(120);
-                Collections.reverse(path_array);
-                Intent i=new Intent(MainActivity.this,floor_plan.class);
-                i.putIntegerArrayListExtra("path",path_array);
-                startActivity(i);
+                if(flag)
+                    Toast.makeText(context, "YOU ARE FUCKED ", Toast.LENGTH_SHORT).show();
+                else {
+                    Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_SHORT).show();
+                    path_array.add(120);
+                    Collections.reverse(path_array);
+                    Intent i = new Intent(MainActivity.this, floor_plan.class);
+                    i.putIntegerArrayListExtra("path", path_array);
+                    i.putIntegerArrayListExtra("fire", fire_node);
 
+                    startActivity(i);
+
+                }
             }
         });
         butb.setOnClickListener(new OnClickListener() {
@@ -122,12 +159,18 @@ public class MainActivity extends AppCompatActivity {
                 ShortestPath t = new ShortestPath();
                 t.dijkstra(g, 0);
                 Context context = getApplicationContext();
-                Toast.makeText(context, "Path: " + ans, Toast.LENGTH_LONG).show();
-                path_array.add(30);
-                Collections.reverse(path_array);
-                Intent i=new Intent(MainActivity.this,floor_plan.class);
-                i.putIntegerArrayListExtra("path",path_array);
-                startActivity(i);
+                //Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_SHORT).show();
+                if(flag)
+                    Toast.makeText(context, "YOU ARE FUCKED ", Toast.LENGTH_SHORT).show();
+                else {
+                    Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_SHORT).show();
+                    path_array.add(30);
+                    Collections.reverse(path_array);
+                    Intent i = new Intent(MainActivity.this, floor_plan.class);
+                    i.putIntegerArrayListExtra("fire", fire_node);
+                    i.putIntegerArrayListExtra("path", path_array);
+                    startActivity(i);
+                }
 
             }
         });
@@ -137,12 +180,18 @@ public class MainActivity extends AppCompatActivity {
                 ShortestPath t = new ShortestPath();
                 t.dijkstra(g, 0);
                 Context context = getApplicationContext();
-                Toast.makeText(context, "Path: " + ans, Toast.LENGTH_LONG).show();
-                path_array.add(201);
-                Collections.reverse(path_array);
-                Intent i=new Intent(MainActivity.this,floor_plan.class);
-                i.putIntegerArrayListExtra("path",path_array);
-                startActivity(i);
+               // Toast.makeText(context,"Follow the path to safety :) ", Toast.LENGTH_LONG).show();
+                if(flag)
+                    Toast.makeText(context, "YOU ARE FUCKED ", Toast.LENGTH_SHORT).show();
+                else {
+                    Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_SHORT).show();
+                    path_array.add(201);
+                    Collections.reverse(path_array);
+                    Intent i = new Intent(MainActivity.this, floor_plan.class);
+                    i.putIntegerArrayListExtra("fire", fire_node);
+                    i.putIntegerArrayListExtra("path", path_array);
+                    startActivity(i);
+                }
 
             }
         });
@@ -152,12 +201,19 @@ public class MainActivity extends AppCompatActivity {
                 ShortestPath t = new ShortestPath();
                 t.dijkstra(g, 0);
                 Context context = getApplicationContext();
-                Toast.makeText(context, "Path: " + ans, Toast.LENGTH_LONG).show();
-                path_array.add(1101);
-                Collections.reverse(path_array);
-                Intent i=new Intent(MainActivity.this,floor_plan.class);
-                i.putIntegerArrayListExtra("path",path_array);
-                startActivity(i);
+               // Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_LONG).show();
+                if(flag)
+                    Toast.makeText(context, "YOU ARE FUCKED ", Toast.LENGTH_SHORT).show();
+                else {
+
+                    Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_SHORT).show();
+                    path_array.add(1101);
+                    Collections.reverse(path_array);
+                    Intent i = new Intent(MainActivity.this, floor_plan.class);
+                    i.putIntegerArrayListExtra("fire", fire_node);
+                    i.putIntegerArrayListExtra("path", path_array);
+                    startActivity(i);
+                }
 
             }
         });
@@ -167,12 +223,18 @@ public class MainActivity extends AppCompatActivity {
                 ShortestPath t = new ShortestPath();
                 t.dijkstra(g, 0);
                 Context context = getApplicationContext();
-                Toast.makeText(context, "Path: " + ans, Toast.LENGTH_LONG).show();
-                path_array.add(1102);
-                Collections.reverse(path_array);
-                Intent i=new Intent(MainActivity.this,floor_plan.class);
-                i.putIntegerArrayListExtra("path",path_array);
-                startActivity(i);
+                //Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_LONG).show();
+                if(flag)
+                    Toast.makeText(context, "YOU ARE FUCKED ", Toast.LENGTH_SHORT).show();
+                else {
+                    Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_SHORT).show();
+                    path_array.add(1102);
+                    Collections.reverse(path_array);
+                    Intent i = new Intent(MainActivity.this, floor_plan.class);
+                    i.putIntegerArrayListExtra("path", path_array);
+                    i.putIntegerArrayListExtra("fire", fire_node);
+                    startActivity(i);
+                }
 
             }
         });
@@ -182,13 +244,19 @@ public class MainActivity extends AppCompatActivity {
                 ShortestPath t = new ShortestPath();
                 t.dijkstra(g, 0);
                 Context context = getApplicationContext();
-                Toast.makeText(context, "Path: " + ans, Toast.LENGTH_LONG).show();
-                path_array.add(100);
-                Collections.reverse(path_array);
-                Intent i=new Intent(MainActivity.this,floor_plan.class);
-                i.putIntegerArrayListExtra("path",path_array);
-                startActivity(i);
+                if(flag)
+                    Toast.makeText(context, "YOU ARE FUCKED ", Toast.LENGTH_SHORT).show();
+                else {
 
+                    Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_SHORT).show();
+                    path_array.add(100);
+                    Collections.reverse(path_array);
+                    Intent i = new Intent(MainActivity.this, floor_plan.class);
+                    i.putIntegerArrayListExtra("path", path_array);
+                    i.putIntegerArrayListExtra("fire", fire_node);
+                    startActivity(i);
+
+                }
             }
         });
         butg.setOnClickListener(new OnClickListener() {
@@ -197,12 +265,19 @@ public class MainActivity extends AppCompatActivity {
                 ShortestPath t = new ShortestPath();
                 t.dijkstra(g, 0);
                 Context context = getApplicationContext();
-                Toast.makeText(context, "Path: " + ans, Toast.LENGTH_LONG).show();
-                path_array.add(502);
-                Collections.reverse(path_array);
-                Intent i=new Intent(MainActivity.this,floor_plan.class);
-                i.putIntegerArrayListExtra("path",path_array);
-                startActivity(i);
+              //  Toast.makeText(context,"Follow the path to safety :) ", Toast.LENGTH_LONG).show();
+                if(flag)
+                    Toast.makeText(context, "YOU ARE FUCKED ", Toast.LENGTH_SHORT).show();
+                else {
+
+                    Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_SHORT).show();
+                    path_array.add(502);
+                    Collections.reverse(path_array);
+                    Intent i = new Intent(MainActivity.this, floor_plan.class);
+                    i.putIntegerArrayListExtra("path", path_array);
+                    i.putIntegerArrayListExtra("fire", fire_node);
+                    startActivity(i);
+                }
 
             }
         });
@@ -212,12 +287,17 @@ public class MainActivity extends AppCompatActivity {
                 ShortestPath t = new ShortestPath();
                 t.dijkstra(g, 0);
                 Context context = getApplicationContext();
-                Toast.makeText(context, "Path: " + ans, Toast.LENGTH_LONG).show();
+              //  Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_LONG).show();
+                if(flag)
+                    Toast.makeText(context, "YOU ARE FUCKED ", Toast.LENGTH_SHORT).show();
+                else {
+                    Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_SHORT).show();
                 path_array.add(202);
                 Collections.reverse(path_array);
                 Intent i=new Intent(MainActivity.this,floor_plan.class);
                 i.putIntegerArrayListExtra("path",path_array);
-                startActivity(i);
+                i.putIntegerArrayListExtra("fire",fire_node);
+                startActivity(i);}
 
             }
         });
@@ -227,12 +307,18 @@ public class MainActivity extends AppCompatActivity {
                 ShortestPath t = new ShortestPath();
                 t.dijkstra(g, 0);
                 Context context = getApplicationContext();
+                if(flag)
+                    Toast.makeText(context, "YOU ARE FUCKED ", Toast.LENGTH_SHORT).show();
+                else {
+
+                 //   Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_SHORT).show();
                 path_array.add(801);
                 Collections.reverse(path_array);
-                Toast.makeText(context, "Path: " + ans, Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_LONG).show();
                 Intent i=new Intent(MainActivity.this,floor_plan.class);
                 i.putIntegerArrayListExtra("path",path_array);
-                startActivity(i);
+                i.putIntegerArrayListExtra("fire",fire_node);
+                startActivity(i);}
 
 
             }
@@ -243,12 +329,19 @@ public class MainActivity extends AppCompatActivity {
                 ShortestPath t = new ShortestPath();
                 t.dijkstra(g, 0);
                 Context context = getApplicationContext();
-                Toast.makeText(context, "Path: " + ans, Toast.LENGTH_LONG).show();
-                path_array.add(101);
-                Collections.reverse(path_array);
-                Intent i=new Intent(MainActivity.this,floor_plan.class);
-                i.putIntegerArrayListExtra("path",path_array);
-                startActivity(i);
+                //Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_LONG).show();
+                if(flag)
+                    Toast.makeText(context, "YOU ARE FUCKED ", Toast.LENGTH_SHORT).show();
+                else {
+
+                    Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_SHORT).show();
+                    path_array.add(101);
+                    Collections.reverse(path_array);
+                    Intent i = new Intent(MainActivity.this, floor_plan.class);
+                    i.putIntegerArrayListExtra("path", path_array);
+                    i.putIntegerArrayListExtra("fire", fire_node);
+                    startActivity(i);
+                }
 
 
             }
@@ -259,12 +352,19 @@ public class MainActivity extends AppCompatActivity {
                 ShortestPath t = new ShortestPath();
                 t.dijkstra(g, 0);
                 Context context = getApplicationContext();
-                Toast.makeText(context, "Path: " + ans, Toast.LENGTH_LONG).show();
-                path_array.add(501);
-                Collections.reverse(path_array);
-                Intent i=new Intent(MainActivity.this,floor_plan.class);
-                i.putIntegerArrayListExtra("path",path_array);
-                startActivity(i);
+
+                if(flag)
+                    Toast.makeText(context, "YOU ARE FUCKED ", Toast.LENGTH_SHORT).show();
+                else {
+                    Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_SHORT).show();
+
+                    path_array.add(501);
+                    Collections.reverse(path_array);
+                    Intent i = new Intent(MainActivity.this, floor_plan.class);
+                    i.putIntegerArrayListExtra("path", path_array);
+                    i.putIntegerArrayListExtra("fire", fire_node);
+                    startActivity(i);
+                }
 
             }
         });
@@ -274,12 +374,29 @@ public class MainActivity extends AppCompatActivity {
                 ShortestPath t = new ShortestPath();
                 t.dijkstra(g, 0);
                 Context context = getApplicationContext();
-                Toast.makeText(context, "Path: " + ans, Toast.LENGTH_LONG).show();
-                path_array.add(60);
-                Collections.reverse(path_array);
-                Intent i=new Intent(MainActivity.this,floor_plan.class);
-                i.putIntegerArrayListExtra("path",path_array);
-                startActivity(i);
+             //   Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_SHORT).show();
+                if(flag)
+                    Toast.makeText(context, "YOU ARE FUCKED ", Toast.LENGTH_SHORT).show();
+                else {
+
+                    Toast.makeText(context, "Follow the path to safety :) ", Toast.LENGTH_SHORT).show();
+                    path_array.add(60);
+                    Collections.reverse(path_array);
+                    Intent i = new Intent(MainActivity.this, floor_plan.class);
+                    i.putIntegerArrayListExtra("path", path_array);
+                    i.putIntegerArrayListExtra("fire", fire_node);
+                    startActivity(i);
+                }
+
+            }
+        });
+        stuck.setOnClickListener(new OnClickListener() {
+            public void onClick(View arg0) {
+
+                int val = Integer.parseInt( num.getText().toString());
+                Context context = getApplicationContext();
+                Toast.makeText(context, "Don't worry we'll rescuse you from  "+val, Toast.LENGTH_LONG).show();
+
 
             }
         });
@@ -323,10 +440,15 @@ public class MainActivity extends AppCompatActivity {
             ans+="->"+j;
             path_array.add(j);
         }
-        void printSolution(double dist[], int n,int parent[])
+        void printSolution(double dist[]    qf, int n,int parent[])
         {
             //ans="Vertex   Distance from Source";
             //int src = 0;
+            flag=false;
+            Log.d("distance: ",Double.toString(dist[x]));
+            if(dist[x]>=99){
+                flag=true;
+            }
            printPath(parent,x );
            // for (int i = 0; i < V; i++)
             // ans=ans+i+" \t\t "+dist[i];
@@ -385,15 +507,36 @@ public class MainActivity extends AppCompatActivity {
             // print the constructed distance array
             printSolution(dist, V, parent);
         }
-        void remove_fire_node( double graph[][],int v){
-            for(int i=0;i<V;i++dd){
+        double[][] remove_fire_node( double graph[][],int v){
+            int i;
+            for (i =0;i<V;i++)
+                graph[i][v]=99;
 
-                    graph[i][v]=99;
-
+            return graph;
             }
         }
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate your main_menu into the menu
+        MenuInflater inflater =getMenuInflater();
+        getMenuInflater().inflate(R.menu.help, menu);
+
+        // Find the menuItem to add your SubMenu
+        MenuItem myMenuItem = menu.findItem(R.id.action_help);
+        return true;
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_help:
+                Context context = getApplicationContext();
+                Toast.makeText(context,"Click the cubicle number you are in:", Toast.LENGTH_LONG).show();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
     }
+
 
 
 

@@ -10,9 +10,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.shreemoyee.iq1.floor_plan">
 
-    <Button
+ <!--   <Button
         android:text="Button"
         android:layout_width="500dp"
         android:layout_height="500dp"
-        android:id="@+id/button" />
+        android:id="@+id/button" /> -->
 </RelativeLayout>

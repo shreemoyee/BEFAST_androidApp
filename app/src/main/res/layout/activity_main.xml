@@ -13,17 +13,6 @@
 
 
     <Button
-        android:text="B"
-        android:background="@drawable/my_button_bg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/b"
-        android:layout_alignParentLeft="true"
-        android:textColor="@color/colorPrimary"
-        android:layout_alignParentStart="true"
-        android:layout_above="@+id/c" />
-
-    <Button
         android:text="A"
         android:background="@drawable/my_button_bg"
         android:layout_width="wrap_content"
@@ -34,9 +23,9 @@
         android:textColor="@color/colorPrimary"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/b"
         android:layout_alignRight="@+id/b"
-        android:layout_alignEnd="@+id/b" />
+        android:layout_alignEnd="@+id/b"
+        android:layout_above="@+id/b" />
 
 
     <Button
@@ -74,18 +63,6 @@
         android:layout_alignStart="@+id/j" />
 
     <Button
-        android:text="C"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/c"
-        android:background="@drawable/my_button_bg"
-        android:textColor="@color/colorPrimary"
-        android:layout_marginBottom="165dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
         android:text="H"
         android:background="@drawable/my_button_bg"
         android:layout_width="wrap_content"
@@ -107,7 +84,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/f"
         android:textColor="@color/colorPrimary"
-        android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
 
@@ -138,15 +114,65 @@
         android:id="@+id/i2" />
 
     <Button
+        android:text="I am stuck"
+        android:height="30dp"
+        android:background="@drawable/my_button_bg2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button"
+        android:layout_alignTop="@+id/editText"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:text="C"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/c"
+        android:background="@drawable/my_button_bg"
+        android:textColor="@color/colorPrimary"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="B"
+        android:background="@drawable/my_button_bg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/b"
+        android:textColor="@color/colorPrimary"
+        android:layout_above="@+id/c"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
         android:text="E"
         android:background="@drawable/my_button_bg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/e"
         android:textColor="@color/colorPrimary"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/h"
         android:layout_toLeftOf="@+id/f"
-        android:layout_toStartOf="@+id/f" />
+        android:layout_toStartOf="@+id/f"
+        android:layout_marginTop="53dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:height="30dp"
+        android:ems="10"
+        android:background="@drawable/my_button_bg2"
+        android:id="@+id/editText"
+        tools:text="Enter your cubicle No."
+        android:maxLines="1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/button"
+        android:layout_toStartOf="@+id/button"
+        android:layout_alignParentBottom="true" />
 
     <Button
         android:text="D"
@@ -155,9 +181,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/d"
         android:textColor="@color/colorPrimary"
-        android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/e"
-        android:layout_toLeftOf="@+id/e" />
+        android:layout_alignBaseline="@+id/e"
+        android:layout_alignBottom="@+id/e"
+        android:layout_toLeftOf="@+id/e"
+        android:layout_toStartOf="@+id/e" />
     <!--
         <Button
             android:text="I AM STUCK"
